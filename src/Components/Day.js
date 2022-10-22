@@ -29,6 +29,10 @@ const StyledTask = styled.div`
     border-right-style: none;
     border-left-style: none;
 
+    &:hover {
+        cursor: pointer;
+      }
+
 `
 
 const Day = () => {
@@ -39,6 +43,9 @@ const Day = () => {
                     <StyledHeaderDayOfWeek>Пн</StyledHeaderDayOfWeek>
             </StyledDayHeader> 
             <hr/>
+
+            <input type="text" />
+            <button>Создать задачу</button>
 
             <StyledTask />
             <StyledTask />
