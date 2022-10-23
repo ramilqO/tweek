@@ -40,9 +40,15 @@ const Main = ({ date, monthNames, days }) => {
             {days.map((day, index) => (
                 <Day
                     monthNames={monthNames}
-                    date={date}
-                    day={day}
+                    date={
+                        new Date(
+                            date.getFullYear(),
+                            date.getMonth(),
+                            date.getDate() + index
+                        )
+                    }
                     index={index}
+                    days={days}
                 />
             ))}
             <StyledDay>

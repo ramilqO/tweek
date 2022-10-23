@@ -32,7 +32,7 @@ const StyledTask = styled.p`
     }
 `;
 
-const Day = ({ date, monthNames, day, index }) => {
+const Day = ({ date, monthNames, days, index }) => {
     const tasks = [
         'побрить голову',
         'посмотреть вокруг',
@@ -44,7 +44,13 @@ const Day = ({ date, monthNames, day, index }) => {
                 <h2>
                     {monthNames[date.getMonth()]} {date.getDate() + index}
                 </h2>
-                <StyledHeaderDayOfWeek>{day}</StyledHeaderDayOfWeek>
+                <StyledHeaderDayOfWeek>
+                    {/* Альтернативный вариант */}
+                    {/* {new Intl.DateTimeFormat('ru-RU', {
+                        weekday: 'long',
+                    }).format(date)} */}
+                    {days[date.getDay()]}
+                </StyledHeaderDayOfWeek>
             </StyledDayHeader>
             <hr />
 
