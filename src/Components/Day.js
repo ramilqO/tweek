@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { AiFillCaretDown } from 'react-icons/ai';
+
 const StyledDay = styled.div`
     width: 23%;
     height: 100%;
@@ -34,6 +36,10 @@ const StyledTask = styled.p`
     }
 `;
 
+const StyledForm = styled.form`
+    display: flex;
+`
+
 const Day = ({ date, monthNames, days, index }) => {
     const tasks = [
         'побрить голову',
@@ -44,9 +50,9 @@ const Day = ({ date, monthNames, days, index }) => {
     return (
         <StyledDay>
             <StyledDayHeader>
-                <h2>
-                    {monthNames[date.getMonth()]} {date.getDate()}
-                </h2>
+                
+                    <h3>{monthNames[date.getMonth()]} {date.getDate()}</h3>
+
                 <StyledHeaderDayOfWeek>
                     {/* Альтернативный вариант */}
                     {/* {new Intl.DateTimeFormat('ru-RU', {
@@ -54,21 +60,15 @@ const Day = ({ date, monthNames, days, index }) => {
                     }).format(date)} */}
                     {days[date.getDay()]}
                 </StyledHeaderDayOfWeek>
+
             </StyledDayHeader>
             <hr />
 
-            <form>
-                <input type='text' placeholder=''/>
+            <StyledForm>
+                <input type='text' placeholder='' />
                 <button>Создать задачу</button>
-
-                <select>
-                    <option value="Очень важно">Очень важно</option>
-                    <option value="Важно">Важно</option>
-                    <option value="Средне">Средне</option>
-                    <option value="Как пометка">Как пометка</option>
-
-                </select>
-            </form>
+                <div><AiFillCaretDown /></div>
+            </StyledForm>
 
             {tasks.map((task, index) => {
                 return <StyledTask key={index}>{task}</StyledTask>;
