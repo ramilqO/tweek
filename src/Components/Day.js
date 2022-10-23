@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// import {AiFillCaretDown} from 'react-icons/ai';
-
 const StyledDay = styled.div`
     width: 23%;
     height: 100%;
@@ -62,7 +60,7 @@ const Day = ({ date, monthNames, days, index }) => {
             <form>
                 <input type='text' placeholder=''/>
                 <button>Создать задачу</button>
-                {/* <div><AiFillCaretDown /></div> */}
+
                 <select>
                     <option value="Очень важно">Очень важно</option>
                     <option value="Важно">Важно</option>
