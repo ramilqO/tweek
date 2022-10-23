@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// import {AiFillCaretDown} from 'react-icons/ai';
+
 const StyledDay = styled.div`
     width: 23%;
     height: 100%;
 `;
+
 const StyledDayHeader = styled.div`
     display: flex;
     align-items: center;
@@ -27,6 +30,7 @@ const StyledTask = styled.p`
     border-left-style: none;
     transition: 0.5s;
     cursor: pointer;
+
     &:hover {
         background: aliceblue;
     }
@@ -38,6 +42,7 @@ const Day = ({ date, monthNames, days, index }) => {
         'посмотреть вокруг',
         'написать цикл задач',
     ];
+
     return (
         <StyledDay>
             <StyledDayHeader>
@@ -55,8 +60,16 @@ const Day = ({ date, monthNames, days, index }) => {
             <hr />
 
             <form>
-                <input type='text'/>
+                <input type='text' placeholder=''/>
                 <button>Создать задачу</button>
+                {/* <div><AiFillCaretDown /></div> */}
+                <select>
+                    <option value="Очень важно">Очень важно</option>
+                    <option value="Важно">Важно</option>
+                    <option value="Средне">Средне</option>
+                    <option value="Как пометка">Как пометка</option>
+
+                </select>
             </form>
 
             {tasks.map((task, index) => {
