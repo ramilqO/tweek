@@ -5,17 +5,12 @@ import Day from './Day';
 
 const StyledWeek = styled.div`
     height: 500px;
-`
-
-const StyledWeekContainer = styled.div`
     display: flex;
 `
 
 const Week = () => {
     return (
         <StyledWeek>
-
-            <StyledWeekContainer>
             <Day />
             <Day />
             <Day />
@@ -23,8 +18,6 @@ const Week = () => {
             <Day />
             <Day />
             <Day />
-            </StyledWeekContainer>
-
         </StyledWeek>
 
     );
