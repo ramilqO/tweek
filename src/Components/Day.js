@@ -54,8 +54,11 @@ const Day = ({ date, monthNames, days, index }) => {
             </StyledDayHeader>
             <hr />
 
-            <input type='text' />
-            <button>Создать задачу</button>
+            <form>
+                <input type='text'/>
+                <button>Создать задачу</button>
+            </form>
+
             {tasks.map((task, index) => {
                 return <StyledTask key={index}>{task}</StyledTask>;
             })}
