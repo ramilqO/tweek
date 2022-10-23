@@ -1,14 +1,13 @@
 import './App.css';
 import Navbar from './Components/Navbar';
 import Main from './Components/Main';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import useSetColor from './Hooks/useSetColor';
 
 const StyledApp = styled.div`
     background: #fff;
     height: 100vh;
-
     background: radial-gradient(
         circle,
         ${(props) => props.from} 10%,
@@ -19,6 +18,21 @@ const StyledApp = styled.div`
 function App() {
     const [date, setDate] = useState(new Date());
     const [colorsTheme, setcolorsTheme] = useState(useSetColor());
+
+    const [task, setTask] = useState({
+        text: 'полное описание задачи пригодится нам потом',
+        important: true,
+    });
+    const [allTasks, setAllTasks] = useState([
+        {
+            dateObj: { year: 2022, day: 23 },
+            tasks: [task, task, task, task],
+        },
+        {
+            dateObj: { year: 2022, day: 24 },
+            tasks: [task, task, task, task],
+        },
+    ]);
 
     let days = [
         'Воскресенье',
@@ -51,7 +65,12 @@ function App() {
                 date={date}
                 colorsTheme={colorsTheme}
             />
-            <Main monthNames={monthNames} date={date} days={days} />
+            <Main
+                monthNames={monthNames}
+                date={date}
+                days={days}
+                allTasks={allTasks}
+            />
         </StyledApp>
     );
 }

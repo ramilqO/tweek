@@ -8,9 +8,11 @@ const StyledDay = styled.div`
     position: relative;
     width: 24%;
     border-radius: 10px;
+    height: min-content;
     max-height: 48%;
     background-color: #fff;
     padding: 10px;
+    overflow-y: auto;
 `;
 
 const StyledHeader = styled.div`
@@ -48,13 +50,13 @@ const StyledForm = styled.form`
     display: flex;
 `;
 
-const Day = ({ date, monthNames, days }) => {
-    const tasks = [
-        'побрить голову',
-        'посмотреть вокруг',
-        'написать цикл задач',
-    ];
-
+const Day = ({ date, monthNames, days, allTasks, indexItem }) => {
+    let isCurrentDay = (task) => {
+        return (
+            task.dateObj.year === date.getFullYear() &&
+            task.dateObj.day === date.getDate()
+        );
+    };
     return (
         <StyledDay>
             <StyledHeader>
@@ -84,9 +86,18 @@ const Day = ({ date, monthNames, days }) => {
             </StyledForm>
 
             <StyledTaskList>
-                {tasks.map((task, index) => {
-                    return <StyledTask key={index}>{task}</StyledTask>;
-                })}
+                {allTasks &&
+                    allTasks.map((task, index) => {
+                        if (isCurrentDay(task)) {
+                            return task.tasks.map((taskItem) => {
+                                return (
+                                    <StyledTask key={taskItem.text}>
+                                        {taskItem.text}
+                                    </StyledTask>
+                                );
+                            });
+                        }
+                    })}
             </StyledTaskList>
         </StyledDay>
     );
