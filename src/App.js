@@ -1,10 +1,38 @@
 import './App.css';
 import Navbar from './Components/Navbar';
 import Main from './Components/Main';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components/macro';
+import useSetColor from './Hooks/useSetColor';
+
+const StyledApp = styled.div`
+    background: #fff;
+    height: 100vh;
+    background: radial-gradient(
+        circle,
+        ${(props) => props.from} 10%,
+        ${(props) => props.to} 100%
+    );
+`;
 
 function App() {
     const [date, setDate] = useState(new Date());
+    const [colorsTheme, setcolorsTheme] = useState(useSetColor());
+
+    const [task, setTask] = useState({
+        text: 'полное описание задачи пригодится нам потом',
+        important: true,
+    });
+    const [allTasks, setAllTasks] = useState([
+        {
+            dateObj: { year: 2022, day: 23 },
+            tasks: [task, task, task, task],
+        },
+        {
+            dateObj: { year: 2022, day: 24 },
+            tasks: [task, task, task, task],
+        },
+    ]);
 
     let days = [
         'Воскресенье',
@@ -31,10 +59,19 @@ function App() {
     ];
 
     return (
-        <div className='App'>
-            <Navbar monthNames={monthNames} date={date} />
-            <Main monthNames={monthNames} date={date} days={days} />
-        </div>
+        <StyledApp from={colorsTheme.from} to={colorsTheme.to}>
+            <Navbar
+                monthNames={monthNames}
+                date={date}
+                colorsTheme={colorsTheme}
+            />
+            <Main
+                monthNames={monthNames}
+                date={date}
+                days={days}
+                allTasks={allTasks}
+            />
+        </StyledApp>
     );
 }
 

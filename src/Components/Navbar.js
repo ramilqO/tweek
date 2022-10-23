@@ -1,18 +1,27 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 
 const StyledNavbar = styled.div`
+    /* 
+        Изменение высоты данного блока требует 
+        изменения высоты StyledMain в /Components/Main.js 
+    */
     width: 100%;
-    height: 100%;
-`;
-
-const StyledContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px;
+    position: relative;
+    /* background-color: #fff; */
+    padding: 0 20px;
+    margin-bottom: 10px;
+    background: #fff;
+    background: radial-gradient(
+        circle,
+        ${(props) => props.colorsTheme.from} 40%,
+        ${(props) => props.colorsTheme.to} 100%
+    );
 `;
 
 const StyledDataHeader = styled.div`
@@ -27,21 +36,17 @@ const StyledNavContainer = styled.div`
     display: flex;
 `;
 
-const Navbar = ({ monthNames, date }) => {
+const Navbar = ({ monthNames, date, colorsTheme }) => {
     return (
-        <StyledNavbar>
-            <StyledContainer>
-                <StyledDataHeader>
-                    <p>
-                        {monthNames[date.getMonth()]} {date.getFullYear()}
-                    </p>
-                </StyledDataHeader>
+        <StyledNavbar colorsTheme={colorsTheme}>
+            <StyledDataHeader>
+                {monthNames[date.getMonth()]} {date.getFullYear()}
+            </StyledDataHeader>
 
-                <StyledNavContainer>
-                    <AiFillCaretLeft />
-                    <AiFillCaretRight />
-                </StyledNavContainer>
-            </StyledContainer>
+            <StyledNavContainer>
+                <AiFillCaretLeft />
+                <AiFillCaretRight />
+            </StyledNavContainer>
         </StyledNavbar>
     );
 };

@@ -1,86 +1,104 @@
 import React from 'react';
-import styled from 'styled-components';
-
+import styled from 'styled-components/macro';
 
 import { AiFillCaretDown } from 'react-icons/ai';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 const StyledDay = styled.div`
-    width: 23%;
-    height: 100%;
-    border: 1px solid black;
+    position: relative;
+    width: 24%;
     border-radius: 10px;
-    margin-bottom: 20px;
+    height: min-content;
+    max-height: 48%;
+    background-color: #fff;
     padding: 10px;
+    overflow-y: auto;
 `;
 
-const StyledDayHeader = styled.div`
+const StyledHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px;
     margin-bottom: 5px;
 `;
 
-const StyledHeaderDayOfWeek = styled.div`
-    opacity: 0.2;
+const StyledHeaderDay = styled.p`
     font-weight: 500;
     font-size: 18px;
 `;
+const StyledHeaderDayOfWeek = styled(StyledHeaderDay)`
+    opacity: 0.5;
+`;
+const StyledTaskList = styled.ul`
+    list-style-type: none;
+    padding: 0;
+`;
 
-const StyledTask = styled.p`
-    height: 50px;
+const StyledTask = styled.li`
+    padding: 5px;
     width: 100%;
-    border: 1px solid black;
-    border-top-style: none;
-    border-right-style: none;
-    border-left-style: none;
-    transition: 0.5s;
+    transition: 0.3s;
     cursor: pointer;
-
+    border-bottom: 1px solid darkcyan;
+    margin-bottom: 5px;
     &:hover {
-        background: aliceblue;
+        background-color: darkcyan;
     }
 `;
 
 const StyledForm = styled.form`
     display: flex;
-`
+`;
 
-const Day = ({ date, monthNames, days, index }) => {
-    const tasks = [
-        'побрить голову',
-        'посмотреть вокруг',
-        'написать цикл задач',
-    ];
-
+const Day = ({ date, monthNames, days, allTasks, indexItem }) => {
+    let isCurrentDay = (task) => {
+        return (
+            task.dateObj.year === date.getFullYear() &&
+            task.dateObj.day === date.getDate()
+        );
+    };
     return (
         <StyledDay>
-            <StyledDayHeader>
-                
-                    <h2>{monthNames[date.getMonth()]} {date.getDate()}</h2>
+            <StyledHeader>
+                {date ? (
+                    <>
+                        <StyledHeaderDay>
+                            {monthNames[date.getMonth()]} {date.getDate()}
+                        </StyledHeaderDay>
 
-                <StyledHeaderDayOfWeek>
-                    {/* Альтернативный вариант */}
-                    {/* {new Intl.DateTimeFormat('ru-RU', {
+                        <StyledHeaderDayOfWeek>
+                            {/* Альтернативный вариант */}
+                            {/* {new Intl.DateTimeFormat('ru-RU', {
                         weekday: 'long',
                     }).format(date)} */}
-                    {days[date.getDay()]}
-                </StyledHeaderDayOfWeek>
-
-            </StyledDayHeader>
-            <hr />
+                            {days[date.getDay()]}
+                        </StyledHeaderDayOfWeek>
+                    </>
+                ) : (
+                    <StyledHeaderDay>Другие задачи</StyledHeaderDay>
+                )}
+            </StyledHeader>
 
             <StyledForm>
-                <input type='text' placeholder='' /> 
+                <input type='text' placeholder='' />
                 <AiFillCaretDown />
-                <AiFillCheckCircle/>
-               
+                <AiFillCheckCircle />
             </StyledForm>
 
-            {tasks.map((task, index) => {
-                return <StyledTask key={index}>{task}</StyledTask>;
-            })}
+            <StyledTaskList>
+                {allTasks &&
+                    allTasks.map((task, index) => {
+                        if (isCurrentDay(task)) {
+                            return task.tasks.map((taskItem) => {
+                                return (
+                                    <StyledTask key={taskItem.text}>
+                                        {taskItem.text}
+                                    </StyledTask>
+                                );
+                            });
+                        }
+                    })}
+            </StyledTaskList>
         </StyledDay>
     );
 };
