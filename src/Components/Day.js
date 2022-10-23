@@ -91,7 +91,7 @@ const Day = ({ date, monthNames, days, allTasks, indexItem }) => {
                         if (isCurrentDay(task)) {
                             return task.tasks.map((taskItem) => {
                                 return (
-                                    <StyledTask key={taskItem.text}>
+                                    <StyledTask key={taskItem.text + index}>
                                         {taskItem.text}
                                     </StyledTask>
                                 );
