@@ -1,4 +1,7 @@
 const useSetColor = () => {
-    return `#${Math.floor(Math.random() * 0xffffff).toString(16)}`;
+    return {
+        from: `#${Math.floor(Math.random() * 0xffffff).toString(16)}`,
+        to: `#${Math.floor(Math.random() * 0xffffff).toString(16)}`,
+    };
 };
 export default useSetColor;

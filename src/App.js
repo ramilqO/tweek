@@ -18,6 +18,7 @@ const StyledApp = styled.div`
 
 function App() {
     const [date, setDate] = useState(new Date());
+    const [colorsTheme, setcolorsTheme] = useState(useSetColor());
 
     let days = [
         'Воскресенье',
@@ -44,8 +45,12 @@ function App() {
     ];
 
     return (
-        <StyledApp from={useSetColor()} to={useSetColor()}>
-            <Navbar monthNames={monthNames} date={date} />
+        <StyledApp from={colorsTheme.from} to={colorsTheme.to}>
+            <Navbar
+                monthNames={monthNames}
+                date={date}
+                colorsTheme={colorsTheme}
+            />
             <Main monthNames={monthNames} date={date} days={days} />
         </StyledApp>
     );
