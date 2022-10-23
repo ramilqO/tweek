@@ -1,11 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 import { AiFillCaretDown } from 'react-icons/ai';
+import { AiFillCheckCircle } from 'react-icons/ai';
 
 const StyledDay = styled.div`
     width: 23%;
     height: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
 `;
 
 const StyledDayHeader = styled.div`
@@ -13,12 +19,13 @@ const StyledDayHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 5px;
+    margin-bottom: 5px;
 `;
 
 const StyledHeaderDayOfWeek = styled.div`
     opacity: 0.2;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 18px;
 `;
 
 const StyledTask = styled.p`
@@ -51,7 +58,7 @@ const Day = ({ date, monthNames, days, index }) => {
         <StyledDay>
             <StyledDayHeader>
                 
-                    <h3>{monthNames[date.getMonth()]} {date.getDate()}</h3>
+                    <h2>{monthNames[date.getMonth()]} {date.getDate()}</h2>
 
                 <StyledHeaderDayOfWeek>
                     {/* Альтернативный вариант */}
@@ -65,9 +72,10 @@ const Day = ({ date, monthNames, days, index }) => {
             <hr />
 
             <StyledForm>
-                <input type='text' placeholder='' />
-                <button>Создать задачу</button>
-                <div><AiFillCaretDown /></div>
+                <input type='text' placeholder='' /> 
+                <AiFillCaretDown />
+                <AiFillCheckCircle/>
+               
             </StyledForm>
 
             {tasks.map((task, index) => {
