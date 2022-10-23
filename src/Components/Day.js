@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 
 import { AiFillCaretDown } from 'react-icons/ai';
@@ -51,15 +51,6 @@ const StyledForm = styled.form`
 `;
 
 const Day = ({ date, monthNames, days, allTasks, indexItem }) => {
-    const form = useRef();
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Варианты получения данных из формы
-        // console.log(event.target[0].value);
-        // console.log(event.target.elements.text.value);
-        // console.log(event.target.text.value);
-    };
-
     let isCurrentDay = (task) => {
         return (
             task.dateObj.year === date.getFullYear() &&
@@ -88,12 +79,10 @@ const Day = ({ date, monthNames, days, allTasks, indexItem }) => {
                 )}
             </StyledHeader>
 
-            <StyledForm ref={form} onSubmit={handleSubmit}>
-                <input type='text' name='text' placeholder='' />
+            <StyledForm>
+                <input type='text' placeholder='' />
                 <AiFillCaretDown />
-                <button type='submit'>
-                    <AiFillCheckCircle />
-                </button>
+                <AiFillCheckCircle />
             </StyledForm>
 
             <StyledTaskList>
