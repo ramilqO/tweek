@@ -42,7 +42,7 @@ const Day = ({ date, monthNames, days, index }) => {
         <StyledDay>
             <StyledDayHeader>
                 <h2>
-                    {monthNames[date.getMonth()]} {date.getDate() + index}
+                    {monthNames[date.getMonth()]} {date.getDate()}
                 </h2>
                 <StyledHeaderDayOfWeek>
                     {/* Альтернативный вариант */}
