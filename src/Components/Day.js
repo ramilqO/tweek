@@ -28,9 +28,11 @@ const StyledTask = styled.div`
     border-top-style: none;
     border-right-style: none;
     border-left-style: none;
+    transition: 0.5s;
 
     &:hover {
         cursor: pointer;
+        background: aliceblue;
       }
 
 `
