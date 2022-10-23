@@ -2,26 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledDay = styled.div`
-    width: 14%;
+    width: 23%;
     height: 100%;
-    margin: 10px;
-    
-`
+`;
 const StyledDayHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 5px;
-`
+`;
 
 const StyledHeaderDayOfWeek = styled.div`
-    opacity: .2;
+    opacity: 0.2;
     font-weight: 500;
     font-size: 25px;
-`
+`;
 
-const StyledTask = styled.div`
+const StyledTask = styled.p`
     height: 50px;
     width: 100%;
     border: 1px solid black;
@@ -29,37 +26,41 @@ const StyledTask = styled.div`
     border-right-style: none;
     border-left-style: none;
     transition: 0.5s;
-
+    cursor: pointer;
     &:hover {
-        cursor: pointer;
         background: aliceblue;
-      }
+    }
+`;
 
-`
-
-const Day = () => {
+const Day = ({ date, monthNames, days, index }) => {
+    const tasks = [
+        'побрить голову',
+        'посмотреть вокруг',
+        'написать цикл задач',
+    ];
     return (
         <StyledDay>
             <StyledDayHeader>
-                <h2>17.10</h2>
-                    <StyledHeaderDayOfWeek>Пн</StyledHeaderDayOfWeek>
-            </StyledDayHeader> 
-            <hr/>
+                <h2>
+                    {monthNames[date.getMonth()]} {date.getDate()}
+                </h2>
+                <StyledHeaderDayOfWeek>
+                    {/* Альтернативный вариант */}
+                    {/* {new Intl.DateTimeFormat('ru-RU', {
+                        weekday: 'long',
+                    }).format(date)} */}
+                    {days[date.getDay()]}
+                </StyledHeaderDayOfWeek>
+            </StyledDayHeader>
+            <hr />
 
-            <input type="text" />
+            <input type='text' />
             <button>Создать задачу</button>
-
-            <StyledTask />
-            <StyledTask />
-            <StyledTask />
-            <StyledTask />
-            <StyledTask />
-            <StyledTask />
-            <StyledTask />
-            <StyledTask />
-
+            {tasks.map((task, index) => {
+                return <StyledTask key={index}>{task}</StyledTask>;
+            })}
         </StyledDay>
     );
-}
+};
 
 export default Day;
