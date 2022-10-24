@@ -43,6 +43,8 @@ const StyledTask = styled.li`
     margin-bottom: 5px;
     &:hover {
         background-color: darkcyan;
+
+        cursor: pointer;
     }
 `;
 
